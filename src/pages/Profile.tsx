@@ -29,7 +29,8 @@ export default function Profile() {
 		try {
 			await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/delete-account/${user.id}`)
 			alert('Account has been deleted')
-			navigate('/')
+			localStorage.removeItem('id')
+			setTimeout(() => { navigate('/') }, 2000)
 		} catch (e) {
 			console.error(e)
 		}

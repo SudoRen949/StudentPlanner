@@ -40,11 +40,8 @@ export default function Assignments() {
 	}, [user])
 
 	const handleCheckbox = async (e, id) => {
-		// const id = Number(e.target.id.split('-')[1])
 		try {
-			await axios.put(`${import.meta.env.VITE_BACKEND_URL}/assignment/update/${id}`, {
-				completed: e.target.checked
-			})
+			await axios.put(`${import.meta.env.VITE_BACKEND_URL}/assignment/update/${id}`, { completed: e.target.checked })
 			setTasks(tasks.filter(task => task.id !== id))
 		} catch (e) {
 			console.error(e)
@@ -97,7 +94,7 @@ export default function Assignments() {
 							difficulty={task.difficulty}
 							deadline={task.deadline}
 							index={task.id}
-							eventHandle={(e) => handleCheckbox(e, task.id)}
+							eventHandle={handleCheckbox}
 						/>
 					))
 				}

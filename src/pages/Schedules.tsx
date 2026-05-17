@@ -16,16 +16,14 @@ export default function Schedules() {
 	useEffect(() => {
 		async function fetchSchedules() {
 			try {
+				const [ss, aa] = await Promise.all([
+					axios.get(`${import.meta.env.VITE_BACKEND_URL}/subject/get/${user.id}`),
+					axios.get(`${import.meta.env.VITE_BACKEND_URL}/assignment/get/${user.id}`)
+				])
+				setSubjects((ss.status <= 201) ? ss.data.subject : [])
+				setAssignments((aa.status <= 201) ? aa.data.assignment : [])
 				const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/schedule/get/${user.id}`)
-				if (response.status <= 201) {
-					const [ss, aa] = await Promise.all([
-						axios.get(`${import.meta.env.VITE_BACKEND_URL}/subject/get/${user.id}`),
-						axios.get(`${import.meta.env.VITE_BACKEND_URL}/assignment/get/${user.id}`)
-					])
-					setSubjects(ss.data.subject)
-					setAssignments(aa.data.assignment)
-					setSchedules(response.data.schedule)
-				}
+				if (response.status <= 201) setSchedules(response.data.schedule)
 			} catch (e) {
 				console.error(e)
 			}

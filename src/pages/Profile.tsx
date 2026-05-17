@@ -7,7 +7,7 @@ import BottomNav from '../components/BottomNav'
 import axios from 'axios'
 
 export default function Profile() {
-	const { user } = useAuth()
+	const { user, setUser } = useAuth()
 	const navigate = useNavigate()
 
 	const [modalOpen, setModalOpen] = useState(false)
@@ -22,6 +22,7 @@ export default function Profile() {
 
 	const handleLogout = () => {
 		localStorage.removeItem('id')
+		setUser(null)
 		navigate('/login')
 	}
 
@@ -30,6 +31,7 @@ export default function Profile() {
 			await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/delete-account/${user.id}`)
 			alert('Account has been deleted')
 			localStorage.removeItem('id')
+			setUser(null)
 			setTimeout(() => { navigate('/') }, 2000)
 		} catch (e) {
 			console.error(e)

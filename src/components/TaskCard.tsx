@@ -21,14 +21,11 @@ export default function TaskCard({
 	}
 
 	return (
-		<div
-			key={index}
-			className="border border-black rounded-md overflow-hidden bg-white"
-		>
-
+		<div className="border border-black rounded-md overflow-hidden bg-white">
 			<div className="flex items-center gap-2">
 				<label className="flex items-center cursor-pointer relative p-3">
 					<input
+						key={index}
 						id={`checkbox-${index}`}
 						type="checkbox"
 						className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"

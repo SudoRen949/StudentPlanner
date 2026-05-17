@@ -1,5 +1,7 @@
 # Student AI Study Planner - Frontend (React + Vite)
 
+https://studentplannerai.vercel.app
+
 A modern, mobile-responsive web application built with React, Vite, and Tailwind CSS. This application serves as the user interface for students to manage assignments, view smart notifications, chat with an advanced AI study coach, and generate optimized daily study schedules.
 
 ## Tech Stack
